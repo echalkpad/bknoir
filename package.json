@@ -43,5 +43,10 @@
     }
   ],
   "name": "bknoir",
-  "description": "BkNoir: An Ionic project"
+  "description": "BkNoir: An Ionic project",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/aedwards12/bknoir.git"
+  },
+  "license": "MIT"
 }
