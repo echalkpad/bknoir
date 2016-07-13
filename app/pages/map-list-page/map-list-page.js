@@ -13,5 +13,18 @@ export class MapListPage {
     console.log(this.navParams);
     this.navParams = navParams;
     this.platform = platform;
+    this.loadMap();
+  }
+
+  loadMap(){
+    this.platform.ready().then(() => {
+      let latLng = new google.maps.LatLng(-34.9290, 138.6070);
+      let mapOptions = {
+        center: latLng,
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      }
+      this.map = new google.maps.Map(document.getElementById("map_list_canvas"), mapOptions);
+    });
   }
 }
