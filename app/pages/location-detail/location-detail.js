@@ -8,6 +8,7 @@ export class LocationDetailPage {
   static get parameters() {
     return [[NavParams], [Platform]];
   }
+
   constructor( navParams, platform) {
     this.navParams = navParams;
     this.platform = platform
