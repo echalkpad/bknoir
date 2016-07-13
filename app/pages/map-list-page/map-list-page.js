@@ -18,13 +18,19 @@ export class MapListPage {
 
   loadMap(){
     this.platform.ready().then(() => {
-      let latLng = new google.maps.LatLng(-34.9290, 138.6070);
+      let latLng = new google.maps.LatLng(40.7567474, -73.9799926);
       let mapOptions = {
         center: latLng,
         zoom: 15,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       }
       this.map = new google.maps.Map(document.getElementById("map_list_canvas"), mapOptions);
+
+      let marker = new google.maps.Marker({
+            position: latLng,
+            map: this.map,
+            title: 'Hello World!'
+          });
     });
   }
 }
