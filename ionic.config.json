@@ -1,5 +1,11 @@
 {
   "name": "BkNoir",
   "app_id": "",
-  "v2": true
+  "v2": true,
+  "proxies": [
+    {
+      "path": "http://localhost:8100/api",
+      "proxyUrl": "https://invulnerable-mandarine-47296.herokuapp.com/"
+    }
+  ]
 }
