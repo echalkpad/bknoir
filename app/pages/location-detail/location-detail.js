@@ -14,12 +14,13 @@ export class LocationDetailPage {
     this.platform = platform
     this.map = null;
     this.item = this.navParams.get('item');
+    console.log(this.item)
     this.loadMap();
   }
 
   loadMap(){
     this.platform.ready().then(() => {
-      let latLng = new google.maps.LatLng(40.7567474, -73.9799926);
+      let latLng = new google.maps.LatLng(this.item.lat, this.item.long);
 
       let mapOptions = {
         center: latLng,
