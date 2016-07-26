@@ -38,9 +38,20 @@ export class Page1{
   }
 
   loadBusinesses(){
-    let url = "/api";
+    // console.log('trying')
+    // console.log(this.http.get(url))
+
+    let url = "https://invulnerable-mandarine-47296.herokuapp.com/";
     let response = this.http.get(url).map(res => res.json()).subscribe(data => {
         this.items = data.businesses;
-    });
+      },
+      (res) => console.log("res", res),
+      err => console.log('error', err)
+    );
+
+
+    // .subscribe(data => {
+    //     this.items = data.businesses;
+    // });
   }
 }
