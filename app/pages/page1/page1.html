@@ -11,7 +11,7 @@
     </ion-item>
     <ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
       <ion-thumbnail item-left>
-        <img src={{item.avatar}}>
+        <img src={{item.image_url}}>
       </ion-thumbnail>
       <h2>
         {{item.name}}
