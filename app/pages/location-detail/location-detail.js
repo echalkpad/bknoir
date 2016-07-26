@@ -14,7 +14,6 @@ export class LocationDetailPage {
     this.platform = platform
     this.map = null;
     this.item = this.navParams.get('item');
-    console.log(this.item)
     this.loadMap();
   }
 
@@ -31,10 +30,10 @@ export class LocationDetailPage {
       this.map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 
       let marker = new google.maps.Marker({
-            position: latLng,
-            map: this.map,
-            title: 'Hello World!'
-          });
+        position: latLng,
+        map: this.map,
+        title: 'Hello World!'
+      });
     });
   }
 }

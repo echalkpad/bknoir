@@ -5,7 +5,7 @@
   "proxies": [
     {
       "path": "/api",
-      "proxyUrl": "https://invulnerable-mandarine-47296.herokuapp.com/"
+      "proxyUrl": "https://invulnerable-mandarine-47296.herokuapp.com"
     }
   ],
   "defaultBrowser": "chrome"

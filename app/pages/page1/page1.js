@@ -18,13 +18,6 @@ export class Page1{
     this.ext_map_page = { component: MapListPage };
     this.nav = nav;
     this.http = http;
-    // this.items = [
-    //  {name: "Janique's Place", address: "2151 pacific street", distance: "1.2", avatar: "img/food.jpg", description: "Lorem ipsum dolor sit amet, cibo mundi nam no, hinc fabellas vel in. Pro dicunt admodum at, ad partem feugiat sea. Tale labore ad his, no ludus scripta eos te."},
-    //  {name: "Janique's Place", address: "2151 pacific street", distance: "1.2", avatar: "img/food.jpg", description: "Lorem ipsum dolor sit amet, cibo mundi nam no, hinc fabellas vel in. Pro dicunt admodum at, ad partem feugiat sea. Tale labore ad his, no ludus scripta eos te."},
-    //  {name: "Janique's Place", address: "2151 pacific street", distance: "1.2", avatar: "img/food.jpg", description: "Lorem ipsum dolor sit amet, cibo mundi nam no, hinc fabellas vel in. Pro dicunt admodum at, ad partem feugiat sea. Tale labore ad his, no ludus scripta eos te."},
-    //  {name: "Janique's Place", address: "2151 pacific street", distance: "1.2", avatar: "img/food.jpg", description: "Lorem ipsum dolor sit amet, cibo mundi nam no, hinc fabellas vel in. Pro dicunt admodum at, ad partem feugiat sea. Tale labore ad his, no ludus scripta eos te."},
-    //  {name: "Janique's Place", address: "2151 pacific street", distance: "1.2", avatar: "img/food.jpg", description: "Lorem ipsum dolor sit amet, cibo mundi nam no, hinc fabellas vel in. Pro dicunt admodum at, ad partem feugiat sea. Tale labore ad his, no ludus scripta eos te."}
-    // ];
     this.items = [];
     this.loadBusinesses();
   }
@@ -38,9 +31,6 @@ export class Page1{
   }
 
   loadBusinesses(){
-    // console.log('trying')
-    // console.log(this.http.get(url))
-
     let url = "https://invulnerable-mandarine-47296.herokuapp.com/";
     let response = this.http.get(url).map(res => res.json()).subscribe(data => {
         this.items = data.businesses;
@@ -48,10 +38,15 @@ export class Page1{
       (res) => console.log("res", res),
       err => console.log('error', err)
     );
+  }
 
-
-    // .subscribe(data => {
-    //     this.items = data.businesses;
-    // });
+  searchLocationsDB(event, key){
+    let url = "https://invulnerable-mandarine-47296.herokuapp.com/businesses/search?q=" + event.target.value;
+    let response = this.http.get(url).map(res => res.json()).subscribe(data => {
+      this.items = data.businesses;
+    },
+      (res) => console.log("res", res),
+      err => console.log('error', err)
+    );
   }
 }
