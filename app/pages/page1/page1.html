@@ -1,14 +1,13 @@
 <ion-navbar *navbar>
-  <!-- <ion-title>Tab 1</ion-title> -->
+  <ion-title>BKNoir</ion-title>
 </ion-navbar>
 
 <ion-content padding class="page1">
-  <h2>Welcome to BKNoir</h2>
   <button outline (click)="mapView($event)">Map</button>
   <ion-list>
-    <ion-item>
-        <ion-input type="text" placeholder="Search a location..." (input)="searchLocationsDB($event, searchKey)"></ion-input>
-    </ion-item>
+
+    <ion-searchbar placeholder="Search a location..." (keyup)="searchLocationsDB($event, searchKey)"></ion-searchbar>
+
     <ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
       <ion-thumbnail item-left>
         <img src={{item.image_url}}>
