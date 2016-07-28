@@ -19,6 +19,7 @@ export class Page1{
     this.nav = nav;
     this.http = http;
     this.items = [];
+    this.items_dup = [];
     this.loadBusinesses();
   }
 
@@ -34,13 +35,14 @@ export class Page1{
     let url = "https://invulnerable-mandarine-47296.herokuapp.com/";
     let response = this.http.get(url).map(res => res.json()).subscribe(data => {
         this.items = data.businesses;
+        this.items_dup = data.businesses;
       },
       (res) => console.log("res", res),
       err => console.log('error', err)
     );
   }
 
-  searchLocationsDB(event, key){
+  searchLocationsDB(event){
     let url = "https://invulnerable-mandarine-47296.herokuapp.com/businesses/search?q=" + event.target.value;
     let response = this.http.get(url).map(res => res.json()).subscribe(data => {
       this.items = data.businesses;
@@ -48,5 +50,10 @@ export class Page1{
       (res) => console.log("res", res),
       err => console.log('error', err)
     );
+  }
+
+  onCancel(event){
+    console.log('here');
+    this.items = this.items_dup;
   }
 }
