@@ -32,7 +32,7 @@ export class Page1{
   }
 
   loadBusinesses(){
-    let url = "https://invulnerable-mandarine-47296.herokuapp.com/";
+    let url = "https://invulnerable-mandarine-47296.herokuapp.com/businesses/mobile_index";
     let response = this.http.get(url).map(res => res.json()).subscribe(data => {
         this.items = data.businesses;
         this.items_dup = data.businesses;
