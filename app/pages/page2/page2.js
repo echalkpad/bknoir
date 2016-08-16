@@ -34,25 +34,36 @@ export class Page2 {
   }
 
   save(){
-    console.log(this.myForm.value);
-    let alert = Alert.create({
-      title: 'Thank YOU',
+    let alertSuccess = Alert.create({
+      title: 'Thank You',
       subTitle: 'Your listing has been sent to the BKnior Team',
       buttons: ['Ok']
     });
     let body = JSON.stringify(this.myForm.value);
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    let url = "https://invulnerable-mandarine-47296.herokuapp.com/leads/mobile_create?lead[name]=Test&lead[address]=hommy"
+    let url = "https://invulnerable-mandarine-47296.herokuapp.com/leads/mobile_create?lead[name]=" +
+      this.myForm.value.name +
+      "&lead[address]=" +
+      this.myForm.value.address +
+      "&lead[phone]=" +
+      this.myForm.value.phone  +
+      "&lead[web_address]=" +
+      this.myForm.value.web_address +
+      "&lead[note]=" +
+      this.myForm.value.note;
     let response = this.http.post(url, options).map(res => res.json()).subscribe(data => {
-        console.log(data)
+        this.nav.present(alertSuccess);
       },
       (res) => console.log("res", res),
       err => console.log('error', err)
     );
-    this.nav.present(alert);
   }
-
-
 }
+
+// Page2.prototype = {
+//     clearForm: function(){
+//       this.myForm.name = '';
+//     }
+//   }
 

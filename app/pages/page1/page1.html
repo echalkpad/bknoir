@@ -3,7 +3,7 @@
 </ion-navbar>
 
 <ion-content padding class="page1">
-  <button outline (click)="mapView($event)">Map</button>
+  <button outline (click)="mapView($event, items)">Map</button>
   <ion-list>
 
     <ion-searchbar placeholder="Search a location..." (keyup)="searchLocationsDB($event, searchKey)"></ion-searchbar>

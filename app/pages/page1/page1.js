@@ -27,8 +27,8 @@ export class Page1{
     this.nav.push(LocationDetailPage, {item: item})
   }
 
-  mapView($event){
-    this.nav.push(MapListPage)
+  mapView($event, items){
+    this.nav.push(MapListPage,{items: items})
   }
 
   loadBusinesses(){
@@ -53,7 +53,6 @@ export class Page1{
   }
 
   onCancel(event){
-    console.log('here');
     this.items = this.items_dup;
   }
 }
