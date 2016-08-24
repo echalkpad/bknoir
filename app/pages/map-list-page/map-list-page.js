@@ -38,9 +38,19 @@ export class MapListPage {
           let marker2 = new google.maps.Marker({
             position: latLng,
             map: map,
-            title: data.name
+            label: data.name[0]
+          });
+
+          var contentString = '<div id="marker_id"><h1>' + data.name + '</h1></div>'
+          var infowindow = new google.maps.InfoWindow({
+            content: contentString
+          });
+
+          marker2.addListener('click', function() {
+            infowindow.open(map, marker2);
           });
         });
+
       },
       (error) => {
         console.log(error);
