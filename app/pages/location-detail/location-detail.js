@@ -1,4 +1,4 @@
-import {Page, NavParams, Platform} from 'ionic-angular';
+import {Page, NavParams, Platform, Slides} from 'ionic-angular';
 
 @Page({
   templateUrl: 'build/pages/location-detail/location-detail.html',
@@ -9,12 +9,35 @@ export class LocationDetailPage {
     return [[NavParams], [Platform]];
   }
 
+  // @ViewChild('mySlider') slider: Slides;
   constructor( navParams, platform) {
     this.navParams = navParams;
     this.platform = platform
-    this.map = null;
     this.item = this.navParams.get('item');
+    this.slides = [
+      {
+        title: "Welcome to the Docs!",
+        description: "The <b>Ionic Component Documentation</b> showcases a number of useful components that are included out of the box with Ionic.",
+        image: this.item.image_url,
+      },
+      {
+        title: "What is Ionic?",
+        description: "<b>Ionic Framework</b> is an open source SDK that enables developers to build high quality mobile apps with web technologies like HTML, CSS, and JavaScript.",
+        image: "https://s-media-cache-ak0.pinimg.com/736x/c3/49/1c/c3491c03a5e84277da884d332129a0b1.jpg",
+      },
+      {
+        title: "What is Ionic Cloud?",
+        description: "The <b>Ionic Cloud</b> is a cloud platform for managing and scaling Ionic apps with integrated services like push notifications, native builds, user auth, and live updating.",
+        image: "http://s8.favim.com/orig/150727/black-black-rose-cake-food-Favim.com-3016359.jpg",
+      }
+    ];
+
+    this.map = null;
     this.loadMap();
+    this.mySlideOptions = {
+      initialSlide: 1,
+      loop: true
+    };
   }
 
   loadMap(){

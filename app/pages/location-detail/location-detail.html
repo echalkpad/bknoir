@@ -6,7 +6,14 @@
 
 <ion-content padding class="location-detail">
   <ion-card>
-    <img src={{item.image_url}}>
+    <ion-slides business_images>
+      <ion-slide *ngFor="let slide of slides">
+        <img [src]="slide.image" class="slide-image"/>
+        <h2 class="asdfadfa" [innerHTML]="slide.title"></h2>
+        <!-- <p [innerHTML]="sdfadsfadfadf"></p> -->
+      </ion-slide>
+    </ion-slides>
+    <!-- <img src={{item.image_url}}> -->
     <ion-card-content>
       <ion-card-title>
        {{item.name}}
