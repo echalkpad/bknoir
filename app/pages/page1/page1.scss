@@ -1,3 +1,23 @@
 .page1 {
 
 }
+/*overrides*/
+
+/* map button*/
+.bar-button-outline{
+  background-color: $theme-yellow;
+  border-color: $theme-yellow;
+  color: $solf-black;
+}
+
+.bar-button {
+  padding: 0px 9px;
+}
+
+.tab-button-icon{
+  color: $icon-color-active;
+}
+
+/*.toolbar{
+  color: $title-header;
+}*/
