@@ -68,6 +68,9 @@ var LocationDetailPage = exports.LocationDetailPage = (_dec = (0, _ionicAngular.
     get: function get() {
       return [[_ionicAngular.NavParams], [_ionicAngular.Platform]];
     }
+
+    // @ViewChild('mySlider') slider: Slides;
+
   }]);
 
   function LocationDetailPage(navParams, platform) {
@@ -75,10 +78,28 @@ var LocationDetailPage = exports.LocationDetailPage = (_dec = (0, _ionicAngular.
 
     this.navParams = navParams;
     this.platform = platform;
-    this.map = null;
     this.item = this.navParams.get('item');
     console.log(this.item);
+    this.slides = [{
+      title: "",
+      description: "The <b>Ionic Component Documentation</b> showcases a number of useful components that are included out of the box with Ionic.",
+      image: this.item.image_url
+    }, {
+      title: "What is Ionic?",
+      description: "<b>Ionic Framework</b> is an open source SDK that enables developers to build high quality mobile apps with web technologies like HTML, CSS, and JavaScript.",
+      image: "https://s-media-cache-ak0.pinimg.com/736x/c3/49/1c/c3491c03a5e84277da884d332129a0b1.jpg"
+    }, {
+      title: "What is Ionic Cloud?",
+      description: "The <b>Ionic Cloud</b> is a cloud platform for managing and scaling Ionic apps with integrated services like push notifications, native builds, user auth, and live updating.",
+      image: "http://s8.favim.com/orig/150727/black-black-rose-cake-food-Favim.com-3016359.jpg"
+    }];
+
+    this.map = null;
     this.loadMap();
+    this.mySlideOptions = {
+      initialSlide: 1,
+      loop: true
+    };
   }
 
   _createClass(LocationDetailPage, [{
@@ -91,7 +112,7 @@ var LocationDetailPage = exports.LocationDetailPage = (_dec = (0, _ionicAngular.
 
         var mapOptions = {
           center: latLng,
-          zoom: 15,
+          zoom: 14,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
@@ -138,37 +159,56 @@ var MapListPage = exports.MapListPage = (_dec = (0, _ionicAngular.Page)({
   function MapListPage(nav, navParams, platform) {
     _classCallCheck(this, MapListPage);
 
-    console.log(this.navParams);
     this.navParams = navParams;
     this.platform = platform;
+    this.items = this.navParams.get('items');
     this.loadMap();
   }
 
   _createClass(MapListPage, [{
     key: 'loadMap',
     value: function loadMap() {
-      var _this = this;
-
-      this.platform.ready().then(function () {
-        var locationOptions = { timeout: 10000, enableHighAccuracy: true };
-        navigator.geolocation.getCurrentPosition(function (position) {
-          var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-          var mapOptions = {
-            center: latLng,
-            zoom: 15,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-          };
-          _this.map = new google.maps.Map(document.getElementById("map_list_canvas"), mapOptions);
-
-          var marker = new google.maps.Marker({
+      var items = this.items;
+      var locationOptions = { timeout: 30000, enableHighAccuracy: true };
+      navigator.geolocation.getCurrentPosition(function (position) {
+        var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        var mapOptions = {
+          center: latLng,
+          zoom: 13,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map_list_canvas"), mapOptions);
+        var marker = new google.maps.Marker({
+          position: latLng,
+          map: map,
+          title: 'Hello World!'
+        });
+        items.forEach(function (data) {
+          latLng = new google.maps.LatLng(data.lat, data.long);
+          var marker2 = new google.maps.Marker({
             position: latLng,
-            map: _this.map,
-            title: 'Hello World!'
+            map: map,
+            label: data.name[0]
           });
-        }, function (error) {
-          console.log(error);
-        }, locationOptions);
-      });
+
+          var contentString = '<div id="marker_id"><h1>' + data.name + '</h1></div>';
+          var infowindow = new google.maps.InfoWindow({
+            content: contentString
+          });
+
+          marker2.addListener('click', function () {
+            infowindow.open(map, marker2);
+          });
+        });
+      }, function (error) {
+        console.log('sdfsdfasdfadsfdsdfdsfadsfasdfa');
+        console.log(error.code);
+      }, locationOptions);
+
+      // console.log("number 2")
+      // console.log(map)
+      // var myLatLng = new google.maps.LatLng(40.7493918,-73.8838707);
+      // var marker = new google.maps.Marker({ position: myLatLng, map: map, title: 'Hello World!'})
     }
   }]);
 
@@ -186,6 +226,8 @@ exports.Page1 = undefined;
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _dec, _class;
+// import {DefaultImage} from '../../pipes/default-image';
+
 
 var _ionicAngular = require('ionic-angular');
 
@@ -199,9 +241,9 @@ require('rxjs/add/operator/map');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+// pipes: [DefaultImage]
 var Page1 = exports.Page1 = (_dec = (0, _ionicAngular.Page)({
-  templateUrl: 'build/pages/page1/page1.html'
-}), _dec(_class = function () {
+  templateUrl: 'build/pages/page1/page1.html' }), _dec(_class = function () {
   _createClass(Page1, null, [{
     key: 'parameters',
     get: function get() {
@@ -216,14 +258,8 @@ var Page1 = exports.Page1 = (_dec = (0, _ionicAngular.Page)({
     this.ext_map_page = { component: _mapListPage.MapListPage };
     this.nav = nav;
     this.http = http;
-    // this.items = [
-    //  {name: "Janique's Place", address: "2151 pacific street", distance: "1.2", avatar: "img/food.jpg", description: "Lorem ipsum dolor sit amet, cibo mundi nam no, hinc fabellas vel in. Pro dicunt admodum at, ad partem feugiat sea. Tale labore ad his, no ludus scripta eos te."},
-    //  {name: "Janique's Place", address: "2151 pacific street", distance: "1.2", avatar: "img/food.jpg", description: "Lorem ipsum dolor sit amet, cibo mundi nam no, hinc fabellas vel in. Pro dicunt admodum at, ad partem feugiat sea. Tale labore ad his, no ludus scripta eos te."},
-    //  {name: "Janique's Place", address: "2151 pacific street", distance: "1.2", avatar: "img/food.jpg", description: "Lorem ipsum dolor sit amet, cibo mundi nam no, hinc fabellas vel in. Pro dicunt admodum at, ad partem feugiat sea. Tale labore ad his, no ludus scripta eos te."},
-    //  {name: "Janique's Place", address: "2151 pacific street", distance: "1.2", avatar: "img/food.jpg", description: "Lorem ipsum dolor sit amet, cibo mundi nam no, hinc fabellas vel in. Pro dicunt admodum at, ad partem feugiat sea. Tale labore ad his, no ludus scripta eos te."},
-    //  {name: "Janique's Place", address: "2151 pacific street", distance: "1.2", avatar: "img/food.jpg", description: "Lorem ipsum dolor sit amet, cibo mundi nam no, hinc fabellas vel in. Pro dicunt admodum at, ad partem feugiat sea. Tale labore ad his, no ludus scripta eos te."}
-    // ];
     this.items = [];
+    this.items_dup = [];
     this.loadBusinesses();
   }
 
@@ -234,20 +270,46 @@ var Page1 = exports.Page1 = (_dec = (0, _ionicAngular.Page)({
     }
   }, {
     key: 'mapView',
-    value: function mapView($event) {
-      this.nav.push(_mapListPage.MapListPage);
+    value: function mapView($event, items) {
+      this.nav.push(_mapListPage.MapListPage, { items: items });
     }
   }, {
     key: 'loadBusinesses',
     value: function loadBusinesses() {
       var _this = this;
 
-      var url = "/api";
+      var url = "https://invulnerable-mandarine-47296.herokuapp.com/businesses/mobile_index";
       var response = this.http.get(url).map(function (res) {
         return res.json();
       }).subscribe(function (data) {
         _this.items = data.businesses;
+        _this.items_dup = data.businesses;
+      }, function (res) {
+        return console.log("res", res);
+      }, function (err) {
+        return console.log('error', err);
       });
+    }
+  }, {
+    key: 'searchLocationsDB',
+    value: function searchLocationsDB(event) {
+      var _this2 = this;
+
+      var url = "https://invulnerable-mandarine-47296.herokuapp.com/businesses/search?q=" + event.target.value;
+      var response = this.http.get(url).map(function (res) {
+        return res.json();
+      }).subscribe(function (data) {
+        _this2.items = data.businesses;
+      }, function (res) {
+        return console.log("res", res);
+      }, function (err) {
+        return console.log('error', err);
+      });
+    }
+  }, {
+    key: 'onCancel',
+    value: function onCancel(event) {
+      this.items = this.items_dup;
     }
   }]);
 
@@ -262,19 +324,90 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Page2 = undefined;
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _dec, _class;
 
 var _ionicAngular = require('ionic-angular');
+
+var _common = require('@angular/common');
+
+var _http = require('@angular/http');
+
+require('rxjs/add/operator/map');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Page2 = exports.Page2 = (_dec = (0, _ionicAngular.Page)({
   templateUrl: 'build/pages/page2/page2.html'
-}), _dec(_class = function Page2() {
-  _classCallCheck(this, Page2);
-}) || _class);
+}), _dec(_class = function () {
+  _createClass(Page2, null, [{
+    key: 'parameters',
+    get: function get() {
+      return [[_common.FormBuilder], [_ionicAngular.NavController], [_http.Http]];
+    }
+  }]);
 
-},{"ionic-angular":389}],6:[function(require,module,exports){
+  function Page2(formBuilder, nav, http) {
+    _classCallCheck(this, Page2);
+
+    this.nav = nav;
+    this.http = http;
+    this.myForm = formBuilder.group({
+      name: [''],
+      address: [''],
+      phone: [''],
+      web_address: [''],
+      note: ['']
+    });
+  }
+
+  _createClass(Page2, [{
+    key: 'presentAlert',
+    value: function presentAlert() {
+      var alert = _ionicAngular.Alert.create({
+        title: 'Low battery',
+        subTitle: '10% of battery remaining',
+        buttons: ['Dismiss']
+      });
+      this.nav.present(alert);
+    }
+  }, {
+    key: 'save',
+    value: function save() {
+      var _this = this;
+
+      var alertSuccess = _ionicAngular.Alert.create({
+        title: 'Thank You',
+        subTitle: 'Your listing has been sent to the BKnior Team',
+        buttons: ['Ok']
+      });
+      var body = JSON.stringify(this.myForm.value);
+      var headers = new _http.Headers({ 'Content-Type': 'application/json' });
+      var options = new _http.RequestOptions({ headers: headers });
+      var url = "https://invulnerable-mandarine-47296.herokuapp.com/leads/mobile_create?lead[name]=" + this.myForm.value.name + "&lead[address]=" + this.myForm.value.address + "&lead[phone]=" + this.myForm.value.phone + "&lead[web_address]=" + this.myForm.value.web_address + "&lead[note]=" + this.myForm.value.note;
+      var response = this.http.post(url, options).map(function (res) {
+        return res.json();
+      }).subscribe(function (data) {
+        _this.nav.present(alertSuccess);
+      }, function (res) {
+        return console.log("res", res);
+      }, function (err) {
+        return console.log('error', err);
+      });
+    }
+  }]);
+
+  return Page2;
+}()) || _class);
+
+// Page2.prototype = {
+//     clearForm: function(){
+//       this.myForm.name = '';
+//     }
+//   }
+
+},{"@angular/common":8,"@angular/http":216,"ionic-angular":389,"rxjs/add/operator/map":537}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {

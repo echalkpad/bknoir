@@ -1,4 +1,6 @@
 import {Page, NavParams, Platform, Slides} from 'ionic-angular';
+import { InAppBrowser } from 'ionic-native';
+
 
 @Page({
   templateUrl: 'build/pages/location-detail/location-detail.html',
@@ -59,5 +61,10 @@ export class LocationDetailPage {
         title: 'Hello World!'
       });
     });
+  }
+ launch(url) {
+      this.platform.ready().then(() => {
+        cordova.InAppBrowser.open(url, "_system", "location=true");
+      });
   }
 }
