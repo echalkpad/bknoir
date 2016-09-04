@@ -8,5 +8,45 @@
 }
 
 #canvas {
-  height: 200px;
+  height: 150px;
+}
+
+[padding] scroll-content{
+  padding: 0px;
+}
+ion-slides{
+  background-color: black;
+  color: white;
+  height: 269px
+}
+
+.swiper-slide img{
+  height: 245px;
+}
+
+ion-card img {
+  margin: 0 auto;
+}
+
+ion-card ion-card-title {
+  font-size: 2.3rem;
+}
+
+.location_spacing{
+  height: 4px;
+}
+
+a[href^="tel:"] {
+  color: orange;
+  text-decoration: none;
+}
+
+a[href^="tel:"]:before {
+  content: "\260e";
+  margin-right: 0.5em;
+}
+
+.website_link{
+  text-decoration: none;
+  color: $maroon-color;
 }

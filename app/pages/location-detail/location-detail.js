@@ -14,9 +14,10 @@ export class LocationDetailPage {
     this.navParams = navParams;
     this.platform = platform
     this.item = this.navParams.get('item');
+    console.log(this.item)
     this.slides = [
       {
-        title: "Welcome to the Docs!",
+        title: "",
         description: "The <b>Ionic Component Documentation</b> showcases a number of useful components that are included out of the box with Ionic.",
         image: this.item.image_url,
       },
@@ -46,7 +47,7 @@ export class LocationDetailPage {
 
       let mapOptions = {
         center: latLng,
-        zoom: 15,
+        zoom: 14,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       }
 

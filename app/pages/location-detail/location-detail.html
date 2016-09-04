@@ -22,17 +22,22 @@
         {{item.address}}
       </h3>
       <h3>
-        {{item.city}},{{item.state}},{{item.zipcode}}
+        {{item.city}}, {{item.state}} {{item.zipcode}}
       </h3>
+      <h3>
+        <a href="tel:+{{item.formatted_phone1}}">{{item.phone1}}</a>
+      </h3>
+      <p class="location_spacing"></p>
       <h3>
         {{item.neighborhood}}
       </h3>
+
       <h3>
-        {{item.website}}
+       <a class="website_link" href="{{item.website}}"> {{item.website}}</a>
       </h3>
-      <ion-note item-right>
+     <!--  <ion-note item-right>
         {{item.distance}} mi
-      </ion-note>
+      </ion-note> -->
       <p>
         {{item.description}}
       </p>

@@ -18,13 +18,13 @@ export class MapListPage {
 
   loadMap(){
     var items = this.items
-    let locationOptions = {timeout: 10000, enableHighAccuracy: true};
+    let locationOptions = {timeout: 30000, enableHighAccuracy: true};
     navigator.geolocation.getCurrentPosition(
       (position) => {
         let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
         let mapOptions = {
           center: latLng,
-          zoom: 15,
+          zoom: 13,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         }
         var map = new google.maps.Map(document.getElementById("map_list_canvas"), mapOptions);
@@ -53,7 +53,8 @@ export class MapListPage {
 
       },
       (error) => {
-        console.log(error);
+        console.log('sdfsdfasdfadsfdsdfdsfadsfasdfa')
+        console.log(error.code);
       }, locationOptions
     )
 
