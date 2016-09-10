@@ -37,16 +37,21 @@ ion-card ion-card-title {
 }
 
 a[href^="tel:"] {
-  color: orange;
+  color: $maroon-color;
   text-decoration: none;
 }
 
-a[href^="tel:"]:before {
+/*a[href^="tel:"]:before {
   content: "\260e";
   margin-right: 0.5em;
-}
+}*/
 
 .website_link{
   text-decoration: none;
   color: $maroon-color;
+}
+
+.location_address:before{
+  content: "\f10c";
+  margin-right: 0.5em;
 }

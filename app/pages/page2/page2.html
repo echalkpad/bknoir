@@ -5,32 +5,33 @@
   </ion-title>
 </ion-navbar>
 
-<ion-content class="page2">
-  <p>Please help us grow our database of black owned food business!</p>
-  <ion-list no-lines>
-    <form [ngFormModel]="myForm">
-      <ion-item>
-        <ion-label floating>Name</ion-label>
-        <ion-input ngControl="name" type="text"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>Address</ion-label>
-        <ion-input ngControl="address" type="text"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>Phone</ion-label>
-        <ion-input ngControl="phone" type="text"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>Website</ion-label>
-        <ion-input ngControl="web_address" type="text"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>Note</ion-label>
-        <ion-input ngControl="note" type="text"></ion-input>
-      </ion-item>
-    </form>
-    <button full primary (click)="save()">Send Business</button>
-  </ion-list>
-
+<ion-content padding class="page2">
+  <ion-card>
+    <p>Please help us grow our database of black owned food business!</p>
+    <ion-list no-lines>
+      <form [ngFormModel]="myForm">
+        <ion-item>
+          <ion-label floating>Name</ion-label>
+          <ion-input ngControl="name" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Address</ion-label>
+          <ion-input ngControl="address" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Phone</ion-label>
+          <ion-input ngControl="phone" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Website</ion-label>
+          <ion-input ngControl="web_address" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Note</ion-label>
+          <ion-input ngControl="note" type="text"></ion-input>
+        </ion-item>
+      </form>
+      <button full primary (click)="save()" class='form-button-add-place'>Send Business</button>
+    </ion-list>
+  </ion-card>
 </ion-content>
