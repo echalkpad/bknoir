@@ -20,7 +20,7 @@
         </p>
       </ion-card-title>
       <ion-item>
-        <ion-icon name="map-outline" item-left large ></ion-icon>
+        <ion-icon name="map-outline" item-left large  (click)="lauchDirections($event, item)"></ion-icon>
         <h2>
           {{item.address}}
         </h2>
@@ -28,22 +28,20 @@
           {{item.city}}, {{item.state}} {{item.zipcode}}
         </h6>
         <p>Neighborhood: {{item.neighborhood}}</p>
+        <p item-right>{{item.distance_from_current_position}} mi</p>
       </ion-item>
       <ion-item>
-        <ion-icon name="call-outline" item-left large ></ion-icon>
+        <ion-icon name="call-outline" item-left large></ion-icon>
         <h3>
           <a href="tel:+{{item.formatted_phone1}}">{{item.phone1}}</a>
         </h3>
       </ion-item>
       <ion-item>
-        <ion-icon name="link-outline" item-left large ></ion-icon>
+      <ion-icon name="link-outline" item-left large *ngIf="item.website"></ion-icon>
         <h3>
-          <a class="website_link" (click)="launch(item.website)"> {{item.website}}</a>
+          <a class="website_link" (click)="launch(item.website, item)"> {{item.website}}</a>
         </h3>
       </ion-item>
-     <!--  <ion-note item-right>
-        {{item.distance}} mi
-      </ion-note> -->
     </ion-card-content>
     <div id="canvas">
       <div id="map_canvas"></div>
