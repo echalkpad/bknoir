@@ -17,7 +17,7 @@
        under the License.
  */
 
-package com.ionicframework.bknoir214326;
+package com.ionicframework.bknoir214327;
 
 import android.os.Bundle;
 import org.apache.cordova.*;

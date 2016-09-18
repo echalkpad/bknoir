@@ -13,10 +13,9 @@ export class LocationDetailPage {
 
   constructor( navParams, platform) {
     this.navParams = navParams;
-    this.platform = platform
-    this.item = this.navParams.get('item');
-    var slides = []
-    console.log(this.item)
+    this.platform  = platform
+    this.item      = this.navParams.get('item');
+    var slides     = []
     this.item.images.forEach(function(data){
       let slide = {
         title: data.title,
@@ -53,6 +52,7 @@ export class LocationDetailPage {
       });
     });
   }
+
   launch(url,item) {
     this.platform.ready().then(() => {
       window.open(item.http_url, '_system', "location=true");
@@ -69,5 +69,19 @@ export class LocationDetailPage {
       let label = encodeURI(item.name);
       window.open('geo:0,0?q=' + destination + '(' + label + ')', '_system');
     }
+  }
+
+  doRefresh(refresher) {
+    let url = "https://invulnerable-mandarine-47296.herokuapp.com/businesses/mobile_index";
+    let response = this.http.get(url).map(res => res.json()).subscribe(data => {
+        this.items = data.businesses;
+        this.items_dup = data.businesses;
+      },
+      (res) => console.log("res", res),
+      err => console.log('error', err)
+    );
+    setTimeout(() => {
+      refresher.complete();
+    }, 600)
   }
 }

@@ -8836,6 +8836,10 @@ ion-input, ion-select, ion-textarea {
   background-color: #f2f2f2;
   padding: 5px 10px; }
 
+.form-button-add-place {
+  margin-top: 30px;
+  background-color: #711919; }
+
 .scroll {
   height: 100%; }
 
@@ -8867,16 +8871,20 @@ ion-card ion-card-title {
   height: 4px; }
 
 a[href^="tel:"] {
-  color: orange;
+  color: #711919;
   text-decoration: none; }
 
-a[href^="tel:"]:before {
+/*a[href^="tel:"]:before {
   content: "\260e";
-  margin-right: 0.5em; }
-
+  margin-right: 0.5em;
+}*/
 .website_link {
   text-decoration: none;
   color: #711919; }
+
+.location_address:before {
+  content: "\f10c";
+  margin-right: 0.5em; }
 
 #map_list_canvas {
   height: 500px; }

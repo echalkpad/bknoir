@@ -10,37 +10,38 @@
       <ion-slide *ngFor="let slide of slides">
         <img [src]="slide.image" class="slide-image"/>
         <h2 class="asdfadfa" [innerHTML]="slide.title"></h2>
-        <!-- <p [innerHTML]="sdfadsfadfadf"></p> -->
       </ion-slide>
     </ion-slides>
-    <!-- <img src={{item.image_url}}> -->
     <ion-card-content>
       <ion-card-title>
        {{item.name}}
+        <p>
+          {{item.description}}
+        </p>
       </ion-card-title>
-      <h3>
-        {{item.address}}
-      </h3>
-      <h3>
-        {{item.city}}, {{item.state}} {{item.zipcode}}
-      </h3>
-      <h3>
-        <a href="tel:+{{item.formatted_phone1}}">{{item.phone1}}</a>
-      </h3>
-      <p class="location_spacing"></p>
-      <h3>
-        {{item.neighborhood}}
-      </h3>
-
-      <h3>
-       <a class="website_link" (click)="launch(item.website)"> {{item.website}}</a>
-      </h3>
-     <!--  <ion-note item-right>
-        {{item.distance}} mi
-      </ion-note> -->
-      <p>
-        {{item.description}}
-      </p>
+      <ion-item>
+        <ion-icon name="map-outline" item-left large  (click)="lauchDirections($event, item)"></ion-icon>
+        <h2>
+          {{item.address}}
+        </h2>
+        <h6>
+          {{item.city}}, {{item.state}} {{item.zipcode}}
+        </h6>
+        <p>Neighborhood: {{item.neighborhood}}</p>
+        <p item-right>{{item.distance_from_current_position}} mi</p>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="call-outline" item-left large></ion-icon>
+        <h3>
+          <a href="tel:+{{item.formatted_phone1}}">{{item.phone1}}</a>
+        </h3>
+      </ion-item>
+      <ion-item>
+      <ion-icon name="link-outline" item-left large *ngIf="item.website"></ion-icon>
+        <h3>
+          <a class="website_link" (click)="launch(item.website, item)"> {{item.website}}</a>
+        </h3>
+      </ion-item>
     </ion-card-content>
     <div id="canvas">
       <div id="map_canvas"></div>

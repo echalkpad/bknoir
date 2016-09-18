@@ -58,4 +58,19 @@ export class Page1{
   onCancel(event){
     this.items = this.items_dup;
   }
+
+  doRefresh(refresher) {
+    let url = "https://invulnerable-mandarine-47296.herokuapp.com/businesses/mobile_index";
+    let response = this.http.get(url).map(res => res.json()).subscribe(data => {
+        this.items = data.businesses;
+        this.items_dup = data.businesses;
+      },
+      (res) => console.log("res", res),
+      err => console.log('error', err)
+    );
+    setTimeout(() => {
+      refresher.complete();
+    }, 600)
+  }
+
 }

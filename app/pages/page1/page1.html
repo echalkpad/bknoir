@@ -5,11 +5,13 @@
   </ion-buttons>
 </ion-navbar>
 
-<ion-content padding class="page1">
+  <ion-content padding class="page1">
+    <ion-refresher (refresh)="doRefresh($event, refresher)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
   <ion-list>
-
     <ion-searchbar placeholder="Search a location..." (keyup)="searchLocationsDB($event, searchKey)"></ion-searchbar>
-
     <ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
       <ion-thumbnail item-left>
         <img src={{item.image_url}}>
