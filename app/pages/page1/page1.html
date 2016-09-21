@@ -14,17 +14,17 @@
   <ion-row class="businesses_container" >
     <ion-col *ngFor="let item of items" (click)="itemTapped($event, item)" class="col col-50 businesses_item">
       <ion-card class="main-business-card">
+        <button outline small item-right class='distance'>
+           {{item.distance_from_current_position}} mi
+        </button>
         <img src={{item.image_url}} class='business-card-image'>
-        <h4><strong>{{item.name}}</strong>
-
+        <h4 class="center-text">
+          <strong>{{item.name}}</strong>
         </h4>
-        <h5>
+        <h5 class="center-text">
           {{item.address}}
         </h5>
-        <ion-note item-right class='distance'>
-           {{item.distance_from_current_position}} mi
-        </ion-note>
-        <p>
+        <p class="center-text">
           {{item.description}}
         </p>
       </ion-card>
