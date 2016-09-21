@@ -25,12 +25,20 @@
 // Both iOS and MD colors can be further customized if colors
 // are different per mode.
 
-$action-sheet-ios-background: #507773;
+$action-sheet-ios-background: #39B54A;
 $theme-yellow: #dabe6a;
 $solf-black: #2f2f2f;
-$icon-color-active: #711919;
-$icon-color-inactive: #a09a9a;
+$icon-color-active: #FFFFFF;
+$icon-color-inactive: #999999;
 $maroon-color: #711919;
+$distance: #39B54A;
+$header: #1A1A1A;
+$text: #333333;
+$searchbar: #CCCCCC;
+$page-background: #F2F2F2;
+$active-clickable: #29ABE2;
+$map-marker: #DE1D25;
+$price-color: #D6A35A;
 
 $colors: (
   primary:    #2f2f2f,
@@ -38,5 +46,6 @@ $colors: (
   danger:     #f53d3d,
   light:      #f4f4f4,
   dark:       #222,
-  favorite:   #507773
+  header:   #1A1A1A,
+
 );

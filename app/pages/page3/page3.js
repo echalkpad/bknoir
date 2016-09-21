@@ -6,6 +6,6 @@ import {Page} from 'ionic-angular';
 })
 export class Page3 {
   constructor() {
-
+    window.open("https://medium.com/@noirowned", '_system', "location=true");
   }
 }

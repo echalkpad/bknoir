@@ -1,33 +1,33 @@
-<ion-navbar *navbar favorite>
-  <ion-title >BKNoir</ion-title>
-  <ion-buttons end>
+<ion-navbar *navbar header>
+  <ion-buttons>
     <button outline (click)="mapView($event, items)">Map</button>
   </ion-buttons>
+  <ion-title >Okra</ion-title>
 </ion-navbar>
 
-  <ion-content padding class="page1">
-    <ion-refresher (refresh)="doRefresh($event, refresher)">
-      <ion-refresher-content></ion-refresher-content>
-    </ion-refresher>
+<ion-content padding class="page1">
+<ion-refresher (refresh)="doRefresh($event, refresher)">
+  <ion-refresher-content></ion-refresher-content>
+</ion-refresher>
 
-  <ion-list>
-    <ion-searchbar placeholder="Search a location..." (keyup)="searchLocationsDB($event, searchKey)"></ion-searchbar>
-    <ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-thumbnail item-left>
-        <img src={{item.image_url}}>
-      </ion-thumbnail>
-      <h2>
-        {{item.name}}
-      </h2>
-      <h3>
-        {{item.address}}
-      </h3>
-      <ion-note item-right>
-         {{item.distance_from_current_position}} mi
-      </ion-note>
-      <p>
-        {{item.description}}
-      </p>
-    </ion-item>
-  </ion-list>
+  <ion-searchbar placeholder="Search a location..." (keyup)="searchLocationsDB($event, searchKey)"></ion-searchbar>
+  <ion-row class="businesses_container" >
+    <ion-col *ngFor="let item of items" (click)="itemTapped($event, item)" class="col col-50 businesses_item">
+      <ion-card class="main-business-card">
+        <img src={{item.image_url}} class='business-card-image'>
+        <h4><strong>{{item.name}}</strong>
+
+        </h4>
+        <h5>
+          {{item.address}}
+        </h5>
+        <ion-note item-right class='distance'>
+           {{item.distance_from_current_position}} mi
+        </ion-note>
+        <p>
+          {{item.description}}
+        </p>
+      </ion-card>
+    </ion-col>
+  </ion-row>
 </ion-content>
