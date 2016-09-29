@@ -1,9 +1,12 @@
-import {Page, NavParams, Platform, Slides} from 'ionic-angular';
+import {NavParams, Platform, Slides} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {CUSTOM_ICON_DIRECTIVES} from 'ionic2-custom-icons';
 import { InAppBrowser } from 'ionic-native';
 
 
-@Page({
+@Component({
   templateUrl: 'build/pages/location-detail/location-detail.html',
+  directives: [[CUSTOM_ICON_DIRECTIVES]]
 })
 
 export class LocationDetailPage {
@@ -36,6 +39,12 @@ export class LocationDetailPage {
   loadMap(){
     this.platform.ready().then(() => {
       let latLng = new google.maps.LatLng(this.item.lat, this.item.long);
+      var goldStar = {
+          path: 'M511.024,258.047c0,139.585-113.159,252.745-252.755,252.745c-139.573,0-252.733-113.16-252.733-252.745c0-139.584,113.16-252.744,252.733-252.744C397.865,5.303,511.024,118.462,511.024,258.047z',
+          fill: "#DE1D25",
+          fillOpacity: 1,
+          scale: 1,
+        };
 
       let mapOptions = {
         center: latLng,
@@ -48,7 +57,7 @@ export class LocationDetailPage {
       let marker = new google.maps.Marker({
         position: latLng,
         map: this.map,
-        title: 'Hello World!'
+        icon: "https://s3-us-west-2.amazonaws.com/noirowned/icons/food_location_markerr.png"
       });
     });
   }

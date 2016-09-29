@@ -1,12 +1,16 @@
-import {Page, NavController} from 'ionic-angular';
+import {NavController} from 'ionic-angular';
+import {Component} from '@angular/core';
 import {LocationDetailPage} from '../location-detail/location-detail';
 import {MapListPage} from '../map-list-page/map-list-page';
+import {CUSTOM_ICON_DIRECTIVES} from 'ionic2-custom-icons';
+
 // import {DefaultImage} from '../../pipes/default-image';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 
-@Page({
+@Component({
   templateUrl: 'build/pages/page1/page1.html',
+  directives: [[CUSTOM_ICON_DIRECTIVES]]
   // pipes: [DefaultImage]
 })
 
@@ -35,7 +39,7 @@ export class Page1{
   }
 
   loadBusinesses(){
-    let url = "https://invulnerable-mandarine-47296.herokuapp.com/businesses/mobile_index";
+    let url = "https://invulnerable-mandarine-47296.herokuapp.com/businesses/mobile_index?distance=5";
     let response = this.http.get(url).map(res => res.json()).subscribe(data => {
         this.items = data.businesses;
         this.items_dup = data.businesses;
@@ -56,12 +60,15 @@ export class Page1{
   }
 
   onCancel(event){
+    console.log('event clicked')
     this.items = this.items_dup;
   }
 
   doRefresh(refresher) {
+    console.log('starting')
     let url = "https://invulnerable-mandarine-47296.herokuapp.com/businesses/mobile_index";
     let response = this.http.get(url).map(res => res.json()).subscribe(data => {
+        console.log("inside")
         this.items = data.businesses;
         this.items_dup = data.businesses;
       },

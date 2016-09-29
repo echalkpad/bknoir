@@ -1,10 +1,14 @@
-import {Page, NavController, Alert} from 'ionic-angular';
-import {FORM_DIRECTIVES, FormBuilder,  ControlGroup, Validators, AbstractControl} from '@angular/common';
+import {NavController, Alert} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {FORM_DIRECTIVES, REACTIVE_FORM_DIRECTIVES} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Http, Headers, RequestOptions} from '@angular/http';
+import {CUSTOM_ICON_DIRECTIVES} from 'ionic2-custom-icons';
 import 'rxjs/add/operator/map';
 
-@Page({
-  templateUrl: 'build/pages/page2/page2.html'
+@Component({
+  templateUrl: 'build/pages/page2/page2.html',
+  directives: [[CUSTOM_ICON_DIRECTIVES, FORM_DIRECTIVES, REACTIVE_FORM_DIRECTIVES]]
 })
 export class Page2 {
 
@@ -25,16 +29,16 @@ export class Page2 {
   }
 
   presentAlert(){
-    let alert = Alert.create({
+    let alert = this.alertCtrl.create({
       title: 'Low battery',
       subTitle: '10% of battery remaining',
       buttons: ['Dismiss']
     });
-    this.nav.present(alert);
+    alert.present();
   }
 
   save(){
-    let alertSuccess = Alert.create({
+    let alertSuccess = this.alertCtrl.create({
       title: 'Thank You',
       subTitle: 'Your listing has been sent to the BKnior Team',
       buttons: ['Ok']
@@ -53,7 +57,7 @@ export class Page2 {
       "&lead[note]=" +
       this.myForm.value.note;
     let response = this.http.post(url, options).map(res => res.json()).subscribe(data => {
-        this.nav.present(alertSuccess);
+        alertSuccess.present();
       },
       (res) => console.log("res", res),
       err => console.log('error', err)

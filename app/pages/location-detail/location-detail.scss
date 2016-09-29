@@ -14,10 +14,20 @@
 [padding] scroll-content{
   padding: 0px;
 }
+
+.location-content-card{
+  background-color: $page-background;
+}
+
+.location-card-item{
+  background-color: $page-background;
+}
+
 ion-slides{
-  background-color: black;
+  background-color: $page-background;
   color: white;
-  height: 269px
+  height: 269px;
+  border-bottom: #999999 solid 1px;
 }
 
 .swiper-slide img{
@@ -30,28 +40,46 @@ ion-card img {
 
 ion-card ion-card-title {
   font-size: 2.3rem;
+  text-align: center;
 }
 
 .location_spacing{
   height: 4px;
 }
 
+.location-distance{
+  color: $distance;
+  background-color: $page-background;
+  border-color: #39B54A;
+  padding: 2px;
+}
+
 a[href^="tel:"] {
-  color: $maroon-color;
+  color: $link-color;
   text-decoration: none;
 }
 
-/*a[href^="tel:"]:before {
-  content: "\260e";
-  margin-right: 0.5em;
-}*/
-
 .website_link{
   text-decoration: none;
-  color: $maroon-color;
+  color: $link-color;
 }
 
 .location_address:before{
   content: "\f10c";
   margin-right: 0.5em;
+}
+
+.location-ion-card{
+  width: 100%;
+  margin: 0 0 0 0;
+}
+
+.location_average_price{
+  color:  $price-color;
+  border-color: $price-color;
+  left: 325px;
+  top: 291px;
+  position: absolute;
+  background-color: $page-background;
+  padding: 5px;
 }

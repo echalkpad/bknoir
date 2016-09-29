@@ -1,0 +1,116 @@
+@font-face {
+  font-family: "OkraIcons";
+  src: url('../fonts/OkraIcons.eot');
+  src: url('../fonts/OkraIcons.eot?#iefix') format('eot'),
+  url('../fonts/OkraIcons.woff2') format('woff2'),
+  url('../fonts/OkraIcons.woff') format('woff'),
+  url('../fonts/OkraIcons.ttf') format('truetype'),
+  url('../fonts/OkraIcons.svg#OkraIcons') format('svg');
+}
+
+@mixin oi-styles {
+  font-family: "OkraIcons";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  // speak: none; // only necessary if not using the private unicode range (firstGlyph option)
+  text-decoration: none;
+  text-transform: none;
+}
+
+%oi {
+  @include oi-styles;
+}
+
+@function oi-char($filename) {
+  $char: "";
+
+  @if $filename == add {
+  $char: "\E001";
+}
+  @if $filename == archive {
+  $char: "\E002";
+}
+  @if $filename == back_arrow {
+  $char: "\E003";
+}
+  @if $filename == blog {
+  $char: "\E004";
+}
+  @if $filename == clear {
+  $char: "\E005";
+}
+  @if $filename == contact {
+  $char: "\E006";
+}
+  @if $filename == current_location_marker {
+  $char: "\E007";
+}
+  @if $filename == food_location_markerr {
+  $char: "\E008";
+}
+  @if $filename == link {
+  $char: "\E009";
+}
+  @if $filename == logo_grey {
+  $char: "\E00A";
+}
+  @if $filename == map {
+  $char: "\E00B";
+}
+  @if $filename == storehome {
+  $char: "\E00C";
+}
+
+@return $char;
+}
+
+@mixin oi($filename, $insert: before, $extend: true) {
+&:#{$insert} {
+  @if $extend {
+    @extend %oi;
+  } @else {
+    @include oi-styles;
+  }
+  content: oi-char($filename);
+}
+}
+
+.oi-add {
+  @include oi(add);
+}
+.oi-archive {
+  @include oi(archive);
+}
+.oi-back_arrow {
+  @include oi(back_arrow);
+}
+.oi-blog {
+  @include oi(blog);
+}
+.oi-clear {
+  @include oi(clear);
+}
+.oi-contact {
+  @include oi(contact);
+}
+.oi-current_location_marker {
+  @include oi(current_location_marker);
+}
+.oi-food_location_markerr {
+  @include oi(food_location_markerr);
+}
+.oi-link {
+  @include oi(link);
+}
+.oi-logo_grey {
+  @include oi(logo_grey);
+}
+.oi-map {
+  @include oi(map);
+}
+.oi-storehome {
+  @include oi(storehome);
+}

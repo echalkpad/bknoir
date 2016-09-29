@@ -1,21 +1,26 @@
-<ion-navbar *navbar header>
-  <ion-buttons>
-    <button outline (click)="mapView($event, items)">Map</button>
-  </ion-buttons>
-  <ion-title >Okra</ion-title>
-</ion-navbar>
+<ion-header>
+  <ion-navbar header>
+    <custom-icon set="oi" name="map" (click)="mapView($event, items)"></custom-icon>
+    <ion-title >
+      <custom-icon set="oi" name="logo_grey"></custom-icon>
+      EatOkra
+    </ion-title>
+  </ion-navbar>
+  <ion-searchbar placeholder="Search a location..." (keyup)="searchLocationsDB($event, searchKey)" (ionCancel)="onCancel($event)"></ion-searchbar>
+</ion-header>
 
 <ion-content padding class="page1">
-<ion-refresher (refresh)="doRefresh($event, refresher)">
-  <ion-refresher-content></ion-refresher-content>
-</ion-refresher>
-
-  <ion-searchbar placeholder="Search a location..." (keyup)="searchLocationsDB($event, searchKey)"></ion-searchbar>
+  <ion-refresher (refresh)="doRefresh($event, refresher)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-row class="businesses_container" >
     <ion-col *ngFor="let item of items" (click)="itemTapped($event, item)" class="col col-50 businesses_item">
       <ion-card class="main-business-card">
-        <button outline small item-right class='distance'>
-           {{item.distance_from_current_position}} mi
+        <button small round item-right class='distance'>
+           {{item.distance_from_current_position}}ml
+        </button>
+        <button small round item-right class='average_price'>
+           {{item.average_price}}
         </button>
         <img src={{item.image_url}} class='business-card-image'>
         <h4 class="center-text">

@@ -16,15 +16,31 @@
 
 .tab-button-icon{
   color: $icon-color-active;
+  font-size: 23px;
+}
+
+.tab-button[aria-selected="true"] .tab-button-icon{
+  color: #2dabfb;
 }
 
 .distance{
   color: $distance;
-  left: 115px;
+  left: 105px;
   position: absolute;
   background-color: $page-background;
-  padding: 2px;
+  border: none;
+  padding: 5px;
 }
+
+.average_price{
+  color:  $price-color;
+  left: 150px;
+  position: absolute;
+  background-color: $page-background;
+  border: none;
+  padding: 5px;
+}
+
 
 /*.toolbar{
   color: $title-header;
@@ -48,18 +64,21 @@
   color: $text;
   position: relative;
 }
+
 .business-card-image{
-  height: 110px;
-  width: auto;
+  height: 120px;
+  max-width: 169px;
   margin-bottom: 5px;
+  padding-top: 10px;
 }
 
-tabbar{
+ion-tabbar.show-tabbar{
   background-color: $header;
 }
 
 ion-searchbar{
   background-color: $header;
+  margin-bottom: 10px;
 }
 
 scroll-content{
@@ -72,4 +91,36 @@ ion-content{
 
 .center-text{
   text-align: center;
+}
+
+/*
+*icons
+*/
+
+.oi-blog{
+  color: $page-background;
+}
+
+.oi-map{
+  color: $icon-color-inactive;
+  font-size: 24px;
+  margin-left: 5px;
+}
+
+.oi-back_arrow{
+  color: $icon-color-inactive;
+  font-size: 24px;
+  margin-left: 5px;
+}
+
+.oi-link{
+  color: $icon-color-inactive;
+  font-size: 24px;
+  margin-left: 5px;
+}
+
+.oi-contact{
+  color: $icon-color-inactive;
+  font-size: 24px;
+  margin-left: 5px;
 }

@@ -1,26 +1,32 @@
-<ion-navbar *navbar favorite>
-  <ion-title>
-   {{item.name}}
-  </ion-title>
-</ion-navbar>
+<ion-header>
+  <ion-navbar header>
+    <ion-title >
+      <custom-icon set="oi" name="logo_grey"></custom-icon>
+      EatOkra
+    </ion-title>
+  </ion-navbar>
+</ion-header>
 
 <ion-content padding class="location-detail">
-  <ion-card>
-    <ion-slides business_images>
+  <ion-card class="location-ion-card">
+    <ion-slides [options]="mySlideOptions">
       <ion-slide *ngFor="let slide of slides">
         <img [src]="slide.image" class="slide-image"/>
-        <h2 class="asdfadfa" [innerHTML]="slide.title"></h2>
+        <h2 [innerHTML]="slide.title"></h2>
       </ion-slide>
     </ion-slides>
-    <ion-card-content>
+    <ion-card-content class="location-content-card">
       <ion-card-title>
        {{item.name}}
         <p>
           {{item.description}}
         </p>
+        <button small outline round item-right class='location_average_price'>
+           $$
+        </button>
       </ion-card-title>
-      <ion-item>
-        <ion-icon name="map-outline" item-left large  (click)="lauchDirections($event, item)"></ion-icon>
+      <ion-item class="location-card-item">
+        <custom-icon set="oi" name="map" item-left large (click)="lauchDirections($event, item)"></custom-icon>
         <h2>
           {{item.address}}
         </h2>
@@ -28,16 +34,18 @@
           {{item.city}}, {{item.state}} {{item.zipcode}}
         </h6>
         <p>Neighborhood: {{item.neighborhood}}</p>
-        <p item-right>{{item.distance_from_current_position}} mi</p>
+        <button outline small round item-right class='location-distance'>
+           {{item.distance_from_current_position}}mi
+        </button>
       </ion-item>
-      <ion-item>
-        <ion-icon name="call-outline" item-left large></ion-icon>
+      <ion-item class="location-card-item">
+        <custom-icon set="oi" name="contact" item-left large></custom-icon>
         <h3>
           <a href="tel:+{{item.formatted_phone1}}">{{item.phone1}}</a>
         </h3>
       </ion-item>
-      <ion-item>
-      <ion-icon name="link-outline" item-left large *ngIf="item.website"></ion-icon>
+      <ion-item class="location-card-item">
+        <custom-icon set="oi" name="link" item-left large *ngIf="item.website"></custom-icon>
         <h3>
           <a class="website_link" (click)="launch(item.website, item)"> {{item.website}}</a>
         </h3>

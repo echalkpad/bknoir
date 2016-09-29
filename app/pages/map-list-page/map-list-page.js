@@ -1,7 +1,11 @@
-import { Page, NavController, NavParams, Platform } from 'ionic-angular';
+import {NavController, NavParams, Platform } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {CUSTOM_ICON_DIRECTIVES} from 'ionic2-custom-icons';
 
-@Page({
-  templateUrl: 'build/pages/map-list-page/map-list-page.html'
+
+@Component({
+  templateUrl: 'build/pages/map-list-page/map-list-page.html',
+  directives: [[CUSTOM_ICON_DIRECTIVES]]
 })
 
 export class MapListPage {
@@ -31,14 +35,14 @@ export class MapListPage {
         let marker = new google.maps.Marker({
           position: latLng,
           map: map,
-          title: 'Hello World!'
+          icon: "https://s3-us-west-2.amazonaws.com/noirowned/icons/current_location_marker.png"
         });
         items.forEach(function(data){
           latLng = new google.maps.LatLng(data.lat, data.long);
           let marker2 = new google.maps.Marker({
             position: latLng,
             map: map,
-            label: data.name[0]
+            icon: "https://s3-us-west-2.amazonaws.com/noirowned/icons/food_location_markerr.png"
           });
 
           var contentString = '<div id="marker_id"><h1>' + data.name + '</h1></div>'

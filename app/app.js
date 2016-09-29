@@ -1,11 +1,12 @@
-import {App, Platform} from 'ionic-angular';
+import {Platform, ionicBootstrap} from 'ionic-angular';
+import {Component} from '@angular/core';
 import {StatusBar} from 'ionic-native';
 import {TabsPage} from './pages/tabs/tabs';
+import {CUSTOM_ICON_DIRECTIVES} from 'ionic2-custom-icons';
 
-
-@App({
+@Component({
   template: '<ion-nav [root]="rootPage"></ion-nav>',
-  config: {} // http://ionicframework.com/docs/v2/api/config/Config/
+  directives: [CUSTOM_ICON_DIRECTIVES],
 })
 export class MyApp {
   static get parameters() {
@@ -22,3 +23,8 @@ export class MyApp {
     });
   }
 }
+
+ionicBootstrap(MyApp, [], {
+  // backButtonIcon: '',
+  tabsHighlight: true,
+});

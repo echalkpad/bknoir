@@ -1,14 +1,17 @@
-<ion-navbar *navbar header>
-  <ion-title>
-    Add Place
-  </ion-title>
-</ion-navbar>
+<ion-header>
+  <ion-navbar header>
+    <ion-title >
+      <custom-icon set="oi" name="logo_grey"></custom-icon>
+      EatOkra
+    </ion-title>
+  </ion-navbar>
+</ion-header>
 
 <ion-content padding class="page2">
   <ion-card>
     <p>Please help us grow our database of black owned food business!</p>
     <ion-list no-lines>
-      <form [ngFormModel]="myForm">
+      <form [formGroup]="myForm">
         <ion-item>
           <ion-label floating>Name</ion-label>
           <ion-input ngControl="name" type="text"></ion-input>
@@ -29,8 +32,11 @@
           <ion-label floating>Note</ion-label>
           <ion-input ngControl="note" type="text"></ion-input>
         </ion-item>
+
+        <!-- <button full primary type="submit" class='form-button-add-place'>Send Business</button> -->
+        <button type="submit" class="custom-button" class='form-button-add-place' primary block>Submit</button>
+
       </form>
-      <button full primary (click)="save()" class='form-button-add-place'>Send Business</button>
     </ion-list>
   </ion-card>
 </ion-content>
