@@ -11,8 +11,6 @@ import {CUSTOM_ICON_DIRECTIVES} from 'ionic2-custom-icons';
 })
 export class TabsPage {
   constructor() {
-    // this tells the tabs component which Pages
-    // should be each tab's root Page
     this.tab2Root = Page2;
     this.tab1Root = Page1;
     this.tab3Root = Page3;
