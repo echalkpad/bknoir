@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content padding class="page1">
-  <ion-refresher (refresh)="doRefresh($event, refresher)">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-row class="businesses_container" >
