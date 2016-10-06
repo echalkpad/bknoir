@@ -344,7 +344,7 @@ var Page1 = exports.Page1 = (_dec = (0, _core.Component)({
     value: function loadBusinesses() {
       var _this = this;
 
-      var url = "https://invulnerable-mandarine-47296.herokuapp.com/businesses/mobile_index";
+      var url = "https://invulnerable-mandarine-47296.herokuapp.com/businesses/mobile_index?distance=5";
       var response = this.http.get(url).map(function (res) {
         return res.json();
       }).subscribe(function (data) {
@@ -383,10 +383,12 @@ var Page1 = exports.Page1 = (_dec = (0, _core.Component)({
     value: function doRefresh(refresher) {
       var _this3 = this;
 
+      console.log('starting');
       var url = "https://invulnerable-mandarine-47296.herokuapp.com/businesses/mobile_index";
       var response = this.http.get(url).map(function (res) {
         return res.json();
       }).subscribe(function (data) {
+        console.log("inside");
         _this3.items = data.businesses;
         _this3.items_dup = data.businesses;
       }, function (res) {
@@ -552,8 +554,6 @@ var TabsPage = exports.TabsPage = (_dec = (0, _core.Component)({
 }), _dec(_class = function TabsPage() {
   _classCallCheck(this, TabsPage);
 
-  // this tells the tabs component which Pages
-  // should be each tab's root Page
   this.tab2Root = _page2.Page2;
   this.tab1Root = _page.Page1;
   this.tab3Root = _page3.Page3;

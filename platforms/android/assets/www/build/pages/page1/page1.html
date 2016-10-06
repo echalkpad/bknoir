@@ -6,22 +6,21 @@
       EatOkra
     </ion-title>
   </ion-navbar>
+  <ion-searchbar placeholder="Search a location..." (keyup)="searchLocationsDB($event, searchKey)" (ionCancel)="onCancel($event)"></ion-searchbar>
 </ion-header>
 
 <ion-content padding class="page1">
-<ion-refresher (refresh)="doRefresh($event, refresher)">
-  <ion-refresher-content></ion-refresher-content>
-</ion-refresher>
-
-  <ion-searchbar placeholder="Search a location..." (keyup)="searchLocationsDB($event, searchKey)" (ionCancel)="onCancel($event)"></ion-searchbar>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-row class="businesses_container" >
     <ion-col *ngFor="let item of items" (click)="itemTapped($event, item)" class="col col-50 businesses_item">
       <ion-card class="main-business-card">
         <button small round item-right class='distance'>
-           1.5mi
+           {{item.distance_from_current_position}}ml
         </button>
         <button small round item-right class='average_price'>
-           $$
+           {{item.average_price}}
         </button>
         <img src={{item.image_url}} class='business-card-image'>
         <h4 class="center-text">

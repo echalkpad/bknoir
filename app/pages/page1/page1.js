@@ -60,7 +60,6 @@ export class Page1{
   }
 
   onCancel(event){
-    console.log('event clicked')
     this.items = this.items_dup;
   }
 

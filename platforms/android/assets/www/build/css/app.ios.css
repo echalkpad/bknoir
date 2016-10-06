@@ -8919,7 +8919,7 @@ a[href^="tel:"] {
   padding: 5px; }
 
 #map_list_canvas {
-  height: 500px; }
+  height: 100%; }
 
 @font-face {
   font-family: "OkraIcons";

@@ -45,7 +45,8 @@ export class MapListPage {
             icon: "https://s3-us-west-2.amazonaws.com/noirowned/icons/food_location_markerr.png"
           });
 
-          var contentString = '<div id="marker_id"><h1>' + data.name + '</h1></div>'
+          var contentString = '<div id="marker_id"><h5 id="location-h1">' + data.name + '<span class="button-inner map-item">' + '  ' + data.average_price + '</span></h5><p id="location-address-line1">' + data.address + '</p><p id="location-address-line2">'+ data.city + ', ' + data.state + ', ' + data.zipcode + '</p></div>'
+
           var infowindow = new google.maps.InfoWindow({
             content: contentString
           });
