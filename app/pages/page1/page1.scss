@@ -41,9 +41,10 @@
 }
 
 
-/*.toolbar{
-  color: $title-header;
-}*/
+.toolbar{
+ padding-top: 10px;
+ padding-bottom: 7px;
+}
 
 .businesses_container{
   display: flex;
@@ -138,7 +139,7 @@ ion-content{
   position: none;
   top: 0;
   left: 0;
-  padding: 10 90px 1px;
+  padding: 10 90px 1px !important;
   width: 100%;
   height: 100%;
   -webkit-transform: translateZ(0);
