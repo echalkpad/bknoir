@@ -13,13 +13,17 @@ import 'rxjs/add/operator/map';
 export class Page2 {
 
   static get parameters() {
-    return [[FormBuilder],[NavController], [Http]];
+    return [[FormBuilder],[NavController],[Http]];
   }
 
   constructor(formBuilder, nav, http) {
     this.nav = nav;
     this.http = http;
-    this.myForm = formBuilder.group({
+    this.formBuilder = formBuilder
+  }
+
+  ionViewLoaded() {
+    this.myForm = this.formBuilder.group({
       name: [''],
       address: [''],
       phone: [''],
@@ -38,11 +42,11 @@ export class Page2 {
   }
 
   save(){
-    let alertSuccess = this.alertCtrl.create({
-      title: 'Thank You',
-      subTitle: 'Your listing has been sent to the BKnior Team',
-      buttons: ['Ok']
-    });
+    // let alertSuccess = this.alertCtrl.create({
+    //   title: 'Thank You',
+    //   subTitle: 'Your listing has been sent to the BKnior Team',
+    //   buttons: ['Ok']
+    // });
     let body = JSON.stringify(this.myForm.value);
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
@@ -51,13 +55,14 @@ export class Page2 {
       "&lead[address]=" +
       this.myForm.value.address +
       "&lead[phone]=" +
-      this.myForm.value.phone  +
+      this.myForm.value.phone +
       "&lead[web_address]=" +
       this.myForm.value.web_address +
       "&lead[note]=" +
       this.myForm.value.note;
     let response = this.http.post(url, options).map(res => res.json()).subscribe(data => {
-        alertSuccess.present();
+        // alertSuccess.present();
+        console.log('success')
       },
       (res) => console.log("res", res),
       err => console.log('error', err)
@@ -65,9 +70,4 @@ export class Page2 {
   }
 }
 
-// Page2.prototype = {
-//     clearForm: function(){
-//       this.myForm.name = '';
-//     }
-//   }
 

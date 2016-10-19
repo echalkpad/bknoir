@@ -41,10 +41,10 @@
 }
 
 
-.toolbar{
- padding-top: 10px;
- padding-bottom: 7px;
-}
+/*.toolbar-content{
+ margin-top: 30px;
+ margin-bottom: 20px;
+}*/
 
 .businesses_container{
   display: flex;
@@ -82,6 +82,7 @@ ion-searchbar{
 scroll-content{
   border-top-width: 0px;
 }
+
 
 ion-content{
   background-color: $page-background;
