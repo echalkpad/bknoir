@@ -1,3 +1,46 @@
 .page3 {
 
 }
+
+.item .item-inner{
+  border-bottom: 0px solid #c8c7cc;
+}
+
+.item-input ion-input, .item-input ion-textarea {
+  border-radius: 25px;
+}
+
+.form-description{
+  padding-top: 17px;
+}
+
+form > ion-item.form-description-label.item > div > div > ion-label > h4 {
+  color: $solf-black;
+}
+
+.form-button-add-place{
+  width: 196px;
+  margin: auto;
+  margin-top: 10px;
+  border-radius: 25px;
+}
+
+.add-business-form-button{
+  width: 300px;
+  border-radius: 25px;
+  height: 27px;
+  text-align: left;
+  line-height: 26px;
+  color: $solf-black;
+  background-color: #fff;
+}
+
+.clear-form{
+  padding-top: 12px;
+}
+
+.oi-clear{
+  color: $icon-color-inactive;
+  font-size: 24px;
+  margin-left: 5px;
+}

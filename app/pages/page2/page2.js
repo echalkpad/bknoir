@@ -68,6 +68,16 @@ export class Page2 {
       err => console.log('error', err)
     );
   }
+
+  clearForm(){
+    this.myForm = this.formBuilder.group({
+      name: [''],
+      address: [''],
+      phone: [''],
+      web_address: [''],
+      note: ['']
+    });
+  }
 }
 
 
