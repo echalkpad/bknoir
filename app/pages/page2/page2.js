@@ -62,7 +62,14 @@ export class Page2 {
       this.myForm.value.note;
     let response = this.http.post(url, options).map(res => res.json()).subscribe(data => {
         // alertSuccess.present();
-        console.log('success')
+        console.log('success');
+        this.myForm = this.formBuilder.group({
+          name: [''],
+          address: [''],
+          phone: [''],
+          web_address: [''],
+          note: ['']
+        });
       },
       (res) => console.log("res", res),
       err => console.log('error', err)
