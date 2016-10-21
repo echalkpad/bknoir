@@ -1,12 +1,22 @@
 <ion-header>
   <ion-navbar header>
-    <custom-icon set="oi" name="map" (click)="mapView($event, items)"></custom-icon>
-    <ion-title >
-      <custom-icon set="oi" name="logo_grey"></custom-icon>
-      EatOkra
-    </ion-title>
+    <ion-row text-center>
+      <div class="header-title">
+        <div class="toolbar-title">
+          <custom-icon set="oi" name="logo_grey"></custom-icon>
+          EatOkra
+        </div>
+      </div>
+    </ion-row>
+    <ion-row>
+      <ion-col width-10 class="header-map-icon">
+        <custom-icon set="oi" name="map" (click)="mapView($event, items)"></custom-icon>
+      </ion-col>
+      <ion-col width-90  class="header-map-search">
+        <ion-searchbar placeholder="Search a location..." (keyup)="searchLocationsDB($event, searchKey)" (ionCancel)="onCancel($event)"></ion-searchbar>
+      </ion-col>
+    </ion-row>
   </ion-navbar>
-  <ion-searchbar placeholder="Search a location..." (keyup)="searchLocationsDB($event, searchKey)" (ionCancel)="onCancel($event)"></ion-searchbar>
 </ion-header>
 
 <ion-content padding class="page1">
@@ -22,7 +32,9 @@
         <button small round item-right class='average_price'>
            {{item.average_price}}
         </button>
-        <img src={{item.image_url}} class='business-card-image'>
+        <div class="image-container">
+          <img src={{item.image_url}} class='business-card-image'>
+        </div>
         <h4 class="center-text">
           <strong>{{item.name}}</strong>
         </h4>

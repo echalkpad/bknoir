@@ -1,42 +1,51 @@
 <ion-header>
   <ion-navbar header>
-    <ion-title >
-      <custom-icon set="oi" name="logo_grey"></custom-icon>
-      EatOkra
-    </ion-title>
+    <ion-row text-center>
+      <div class="header-title">
+        <div class="toolbar-title">
+          <custom-icon set="oi" name="logo_grey"></custom-icon>
+          EatOkra
+        </div>
+      </div>
+    </ion-row>
+    <ion-row>
+      <ion-col width-10 class="clear-form">
+        <custom-icon set="oi" name="clear" (click)="clearForm()"></custom-icon>
+      </ion-col>
+      <ion-col width-90  class="header-form-title">
+        <div class='button add-business-form-button'>Add Business</div>
+      </ion-col>
+    </ion-row>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding class="page2">
-  <ion-card>
-    <p>Please help us grow our database of black owned food business!</p>
-    <ion-list no-lines>
-      <form [formGroup]="myForm">
-        <ion-item>
-          <ion-label floating>Name</ion-label>
-          <ion-input ngControl="name" type="text"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>Address</ion-label>
-          <ion-input ngControl="address" type="text"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>Phone</ion-label>
-          <ion-input ngControl="phone" type="text"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>Website</ion-label>
-          <ion-input ngControl="web_address" type="text"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>Note</ion-label>
-          <ion-input ngControl="note" type="text"></ion-input>
-        </ion-item>
-
-        <!-- <button full primary type="submit" class='form-button-add-place'>Send Business</button> -->
-        <button type="submit" class="custom-button" class='form-button-add-place' primary block>Submit</button>
-
-      </form>
-    </ion-list>
-  </ion-card>
+  <form [formGroup]="myForm" (ngSubmit)="save(myForm)">
+    <ion-item class='form-description-label'>
+      <h4 class='form-description'>Please help us grow our database of black owned food business!</h4>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Name</ion-label>
+      <ion-input formControlName="name" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Address</ion-label>
+      <ion-input formControlName="address" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Phone</ion-label>
+      <ion-input formControlName="phone" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Website</ion-label>
+      <ion-input formControlName="web_address" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Note</ion-label>
+      <ion-input formControlName="note" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <button type="submit" class='form-button-add-place' primary block>Send Business</button>
+    </ion-item>
+  </form>
 </ion-content>

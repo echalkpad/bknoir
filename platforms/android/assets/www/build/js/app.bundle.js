@@ -251,7 +251,8 @@ var MapListPage = exports.MapListPage = (_dec = (0, _core.Component)({
             icon: "https://s3-us-west-2.amazonaws.com/noirowned/icons/food_location_markerr.png"
           });
 
-          var contentString = '<div id="marker_id"><h1>' + data.name + '</h1></div>';
+          var contentString = '<div id="marker_id"><h5 id="location-h1">' + data.name + '<span class="button-inner map-item">' + '  ' + data.average_price + '</span></h5><p id="location-address-line1">' + data.address + '</p><p id="location-address-line2">' + data.city + ', ' + data.state + ', ' + data.zipcode + '</p></div>';
+
           var infowindow = new google.maps.InfoWindow({
             content: contentString
           });
@@ -375,7 +376,6 @@ var Page1 = exports.Page1 = (_dec = (0, _core.Component)({
   }, {
     key: 'onCancel',
     value: function onCancel(event) {
-      console.log('event clicked');
       this.items = this.items_dup;
     }
   }, {
@@ -447,16 +447,21 @@ var Page2 = exports.Page2 = (_dec = (0, _core.Component)({
 
     this.nav = nav;
     this.http = http;
-    this.myForm = formBuilder.group({
-      name: [''],
-      address: [''],
-      phone: [''],
-      web_address: [''],
-      note: ['']
-    });
+    this.formBuilder = formBuilder;
   }
 
   _createClass(Page2, [{
+    key: 'ionViewLoaded',
+    value: function ionViewLoaded() {
+      this.myForm = this.formBuilder.group({
+        name: [''],
+        address: [''],
+        phone: [''],
+        web_address: [''],
+        note: ['']
+      });
+    }
+  }, {
     key: 'presentAlert',
     value: function presentAlert() {
       var alert = this.alertCtrl.create({
@@ -469,11 +474,13 @@ var Page2 = exports.Page2 = (_dec = (0, _core.Component)({
   }, {
     key: 'save',
     value: function save() {
-      var alertSuccess = this.alertCtrl.create({
-        title: 'Thank You',
-        subTitle: 'Your listing has been sent to the BKnior Team',
-        buttons: ['Ok']
-      });
+      var _this = this;
+
+      // let alertSuccess = this.alertCtrl.create({
+      //   title: 'Thank You',
+      //   subTitle: 'Your listing has been sent to the BKnior Team',
+      //   buttons: ['Ok']
+      // });
       var body = JSON.stringify(this.myForm.value);
       var headers = new _http.Headers({ 'Content-Type': 'application/json' });
       var options = new _http.RequestOptions({ headers: headers });
@@ -481,23 +488,36 @@ var Page2 = exports.Page2 = (_dec = (0, _core.Component)({
       var response = this.http.post(url, options).map(function (res) {
         return res.json();
       }).subscribe(function (data) {
-        alertSuccess.present();
+        // alertSuccess.present();
+        console.log('success');
+        _this.myForm = _this.formBuilder.group({
+          name: [''],
+          address: [''],
+          phone: [''],
+          web_address: [''],
+          note: ['']
+        });
       }, function (res) {
         return console.log("res", res);
       }, function (err) {
         return console.log('error', err);
       });
     }
+  }, {
+    key: 'clearForm',
+    value: function clearForm() {
+      this.myForm = this.formBuilder.group({
+        name: [''],
+        address: [''],
+        phone: [''],
+        web_address: [''],
+        note: ['']
+      });
+    }
   }]);
 
   return Page2;
 }()) || _class);
-
-// Page2.prototype = {
-//     clearForm: function(){
-//       this.myForm.name = '';
-//     }
-//   }
 
 },{"@angular/core":155,"@angular/forms":244,"@angular/http":282,"ionic-angular":469,"ionic2-custom-icons":558,"rxjs/add/operator/map":626}],6:[function(require,module,exports){
 'use strict';
